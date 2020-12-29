@@ -1,5 +1,11 @@
 export default {
   route: {
+    heroMgt: '英雄管理',
+    banPick: '英雄办选信息',
+    banPickDetail: '英雄办选详情',
+    playerMgt: '玩家管理',
+    playerList: '玩家列表',
+    createPlayer: '新增玩家',
     dashboard: '首页',
     documentation: '文档',
     guide: '引导页',
@@ -107,6 +113,11 @@ export default {
     backToTopTips2: '可自定义按钮的样式、show/hide、出现的高度、返回的位置 如需文字提示，可在外部使用Element的el-tooltip元素',
     imageUploadTips: '由于我在使用时它只有vue@1版本，而且和mockjs不兼容，所以自己改造了一下，如果大家要使用的话，优先还是使用官方版本。',
     changeLanguageTips: '切换语言成功'
+  },
+  player: {
+    accountname: '请输入用户的账号',
+    buttonFilter: '查询',
+    buttonCreate: '新增玩家'
   },
   table: {
     dynamicTips1: '固定表头, 按照表头顺序排序',

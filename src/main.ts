@@ -25,7 +25,7 @@ Vue.use(ElementUI, {
 })
 
 Vue.use(SvgIcon, {
-  tagName: 'svg-icon',
+  tagName: 'svg-icon', // 图标组件名称
   defaultWidth: '1em',
   defaultHeight: '1em'
 })
