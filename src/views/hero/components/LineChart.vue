@@ -1,5 +1,5 @@
 <template>
-  <div :class='classname' :style="{height: height,width: width}">
+  <div :class='className' :style="{height: height,width: width}">
 
   </div>
 </template>
@@ -40,7 +40,7 @@ export default class extends mixins(ResizeMixin) {
   }
 
   mounted() {
-    this.$$nextTick(() => {
+    this.$nextTick(() => {
       this.initChart()
     })
   }
@@ -77,9 +77,146 @@ export default class extends mixins(ResizeMixin) {
           formatter: ([f1, f2]:EChartOption.Tooltip.Format[]) => {
             const v1 = f1.data * 100 + '%'
             const v2 = f2.data * 100 + '%'
+            return (`办选率<br>${f1.marker}${f1.seriesName}:${v1}<br>${f2.marker} ${f2.seriesName}:${v2}`)
           }
-        }
-      })
+        } as any,
+        legend: {
+          top: 20,
+          icon: 'rect',
+          itemWidth: 14,
+          itemHeight: 5,
+          itemGap: 13,
+          data: ['禁⽤率', '登场率'],
+          right: '4%',
+          textStyle: {
+            fontSize: 12,
+            color: '#F1F1F3'
+          }
+        },
+        grid: {
+          top: 100,
+          left: '2%',
+          right: '2%',
+          bottom: '2%',
+          containLabel: true
+        },
+        xAxis: [
+          {
+            type: 'category',
+            boundaryGap: false,
+            axisLine: {
+              lineStyle: {
+                color: '#57617B'
+              }
+            },
+            data: this.chartData.xAxisData
+          }
+        ],
+        yAxis: [
+          {
+            type: 'value',
+            name: '百分⽐',
+            axisTick: {
+              show: false
+            },
+            axisLine: {
+              lineStyle: {
+                color: '#57617B'
+              }
+            },
+            axisLabel: {
+              margin: 10,
+              fontSize: 14,
+              formatter: function(value: number) {
+                return value * 100 + '%'
+              }
+            },
+            splitLine: {
+              lineStyle: {
+                color: '#57617B'
+              }
+            }
+          }
+        ],
+        series: [
+          {
+            name: '登场率',
+            type: 'line',
+            // smooth: true,
+            symbol: 'circle',
+            symbolSize: 5,
+            // showSymbol: false,
+            lineStyle: {
+              width: 2
+            },
+            areaStyle: {
+              color: new echarts.graphic.LinearGradient(
+                0,
+                0,
+                0,
+                1,
+                [
+                  {
+                    offset: 0,
+                    color: 'rgba(0, 136, 212, 0.3)'
+                  },
+                  {
+                    offset: 0.8,
+                    color: 'rgba(0, 136, 212, 0)'
+                  }
+                ],
+                false
+              ),
+              shadowColor: 'rgba(0, 0, 0, 0.1)',
+              shadowBlur: 10
+            },
+            itemStyle: {
+              color: 'rgb(0,136,212)',
+              borderColor: 'rgba(0,136,212,0.2)',
+              borderWidth: 12
+            },
+            data: this.chartData.pickData
+          },
+          {
+            name: '禁⽤率',
+            type: 'line',
+            // smooth: true,
+            symbol: 'circle',
+            symbolSize: 5,
+            // showSymbol: false,
+            lineStyle: {
+              width: 2
+            },
+            areaStyle: {
+              color: new echarts.graphic.LinearGradient(
+                0,
+                0,
+                0,
+                1,
+                [
+                  {
+                    offset: 0,
+                    color: 'rgba(219, 50, 51, 0.3)'
+                  },
+                  {
+                    offset: 0.8,
+                    color: 'rgba(219, 50, 51, 0)'
+                  }
+                ],
+                false
+              ) as any,
+              shadowColor: 'rgba(0, 0, 0, 0.1)',
+              shadowBlur: 10
+            },
+            itemStyle: {
+              color: 'rgb(219,50,51)',
+              borderColor: 'rgba(219,50,51,0.2)',
+              borderWidth: 12
+            },
+            data: this.chartData.banData
+          }
+        ]
+      } as EChartOption<EChartOption.SeriesLine>)
     }
   }
 }

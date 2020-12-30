@@ -75,7 +75,16 @@ export interface Bp {
   pick:number[]
 }
 
+type quarter = '⼀季度'|'⼆季度'| '三季度'|'四季度'
+type week = '周⼀'|'周⼆'| '周三'|'周四'| '周五'| '周六'| '周⽇'
+
 export type RangeType = 'week'|'month'|'quarter'|'year'
+export type RangeData = {
+  week:week[]
+  month:string[]
+  quarter:quarter[]
+  year:string[]
+}
 export type BanPickDetail = {
   [key in RangeType]:Bp
 }

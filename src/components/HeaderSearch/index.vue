@@ -75,9 +75,9 @@ export default class extends Vue {
   @Watch('show')
   private onShowChange(value: boolean) {
     if (value) {
-      document.body.addEventListener('click', this.close)
+      document && document.body && document.body.addEventListener('click', this.close)
     } else {
-      document.body.removeEventListener('click', this.close)
+      document && document.body && document.body.removeEventListener('click', this.close)
     }
   }
 
