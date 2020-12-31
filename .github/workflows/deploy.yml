@@ -19,7 +19,7 @@ jobs:
             # 使⽤action库 actions/setup-node安装node
             uses: actions/setup-node@v1
             with:
-              node-version: 13.2.0
+              node-version: 12.19.0
           # 安装依赖
           - name: Yarn install
             run: npm install yarn && yarn install
